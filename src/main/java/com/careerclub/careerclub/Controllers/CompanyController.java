@@ -1,5 +1,6 @@
 package com.careerclub.careerclub.Controllers;
 import com.careerclub.careerclub.DTOs.CompanyCreationRequest;
+import com.careerclub.careerclub.DTOs.CompanyUpdateRequest;
 import com.careerclub.careerclub.Entities.Company;
 import com.careerclub.careerclub.Service.CompanyService;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,8 @@ public class CompanyController {
             return  ResponseEntity.ok(company);
         }
 
-//        @PutMapping
-//        public ResponseEntity<Company> updateCompany(){
-//        }
+        @PutMapping
+        public ResponseEntity<Company> updateCompany(@PathVariable Long id, @RequestBody CompanyUpdateRequest companyUpdateRequest){
+            return ResponseEntity.of(companyService.updateCompany(id, companyUpdateRequest));
+        }
 }
