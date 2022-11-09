@@ -45,23 +45,6 @@ public class CompanyServiceTest {
         verify(companyRepository).save(any(Company.class));
     }
 
-    @Test
-    @DisplayName("Testing company deletion")
-    public void test_company_deletion(){
-        doNothing().when(companyRepository).delete(any(Company.class));
-        companyService.companyToDelete(1L);
-        verify(companyRepository).delete(any(Company.class));
-    }
 
-    @Test
-    @DisplayName("Testing company update")
-    public void test_company_update(){
-        when(companyRepository.save(any(Company.class))).thenReturn(new Company());
-        var company = new CompanyCreationRequest();
-        company.setName("Changes PLC");
-        company.setDescription("testing changes");
-        companyService.updateCompany(1L,company);
-        verify(companyRepository).save(any(Company.class));
-    }
 
 }
