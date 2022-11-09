@@ -59,7 +59,7 @@ jobs:
           ssh -i ./deploy_key -o 'StrictHostKeyChecking=no' opc@${{ secrets.ORACLE_VM_PUBLIC_IP }} 'mkdir -p carrersclub-jars'
       - name: Rsynch files
         run: |
-          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --progress ~/hr-jars/*.jar opc@${{ secrets.ORACLE_VM_PUBLIC_IP }}:~/carrersclub-jars/app.jar
+          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --progress ~/carrersclub-jars/*.jar opc@${{ secrets.ORACLE_VM_PUBLIC_IP }}:~/carrersclub-jars/app.jar
       - name: Restart application
         run: |
           ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_VM_PUBLIC_IP }} 'sudo chmod +x $HOME/carrersclub-jars/app.jar'
