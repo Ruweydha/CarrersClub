@@ -2,6 +2,7 @@ package com.careerclub.careerclub.JobType;
 
 import com.careerclub.careerclub.Controllers.jobTypeController;
 import com.careerclub.careerclub.DTOs.JobTypeRequest;
+import com.careerclub.careerclub.Entities.JobType;
 import com.careerclub.careerclub.Service.CustomUserDetailsService;
 import com.careerclub.careerclub.Service.JobTypeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,9 +14,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,13 +42,16 @@ public class JobTypeControllerTest {
 
     @Test
     @DisplayName("testing job type creation")
+    @WithMockUser
     public void test_create_jobsType() throws Exception{
         var jobType = new JobTypeRequest();
         jobType.setName("HOME");
         String jtp = objectMapper.writeValueAsString(jobType);
+        when(jobTypeService.createJobType(any(JobTypeRequest.class))).thenReturn(new JobType());
         mockMvc.perform(post("/jobtype")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jtp)).andExpect(status().isOk());
+        verify(jobTypeService).createJobType(any(JobTypeRequest.class));
     }
 
 }

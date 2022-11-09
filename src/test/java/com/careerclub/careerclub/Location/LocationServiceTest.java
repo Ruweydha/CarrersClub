@@ -53,25 +53,5 @@ public class LocationServiceTest {
         verify(locationRepository).save(any(Location.class));
     }
 
-    @Test
-    @DisplayName("Testing location update")
-    public void test_location_update(){
-        when(locationRepository.findByName(any(String.class))).thenReturn(Optional.of(new Location()));
-        when(locationRepository.save(any(Location.class))).thenReturn(new Location());
-        var location = new LocationCreateRequest();
-        location.setName("nairobi");
-        locationService.updateLocation(1L,location);
-        verify(locationRepository).save(any(Location.class));
-        verify(locationRepository).findByName(any(String.class));
-    }
-
-    @Test
-    @DisplayName("Testing location deletion")
-    public void test_location_deletion(){
-        when(locationRepository.findByName(any(String.class))).thenReturn(Optional.of(new Location()));
-        doNothing().when(locationRepository).delete(any(Location.class));
-        locationService.deleteLocation(1L);
-        verify(locationRepository).delete(any(Location.class));
-    }
 
 }
