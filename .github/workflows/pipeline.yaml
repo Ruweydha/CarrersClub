@@ -24,5 +24,4 @@ jobs:
       - name: Checkout from repo
         uses: actions/checkout@v3
       - name: Packaging the application
-        run: mvn -B clean package -DskipTests
-
+        run: ./mvnw -B clean package -DskipTests
