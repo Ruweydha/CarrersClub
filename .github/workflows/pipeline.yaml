@@ -17,5 +17,12 @@ jobs:
         cache: 'maven'
     - name: Runs test
       run: ./mvnw test
-
+  package:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout from repo
+        uses: actions/checkout@v3
+      - name: Packaging the application
+        run: mvn -B clean package -DskipTests
 
