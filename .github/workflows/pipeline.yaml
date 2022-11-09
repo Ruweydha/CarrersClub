@@ -38,7 +38,7 @@ jobs:
           name: carrersclub-jars
           path: target/*.jar
   deploy:
-    needs: test
+    needs: package
     runs-on: ubuntu-latest
     name: Deploy to oracle
     steps:
