@@ -63,4 +63,4 @@ jobs:
       - name: Restart application
         run: |
           ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_VM_PUBLIC_IP }} 'sudo chmod +x $HOME/carrersclub-jars/app.jar'
-          ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_VM_PUBLIC_IP }} 'sudo systemctl restart carrersclub_app.service'
+          ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_VM_PUBLIC_IP }} 'sudo systemctl restart carrersclub.service'
