@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: carrersclub-jars
-          path: CarrersClub/target/*.jar
+          path: target/*.jar
   deploy:
     needs: test
     runs-on: ubuntu-latest
