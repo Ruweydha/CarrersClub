@@ -54,11 +54,10 @@ public class ApplicationService {
 
         user.ifPresentOrElse(u -> {
             job.ifPresentOrElse(j -> {
-                var application = applicationRepository.findByJobIdAndUserId(j.getId(), u.getId());
+                var application = applicationRepository.findByJobIdAndUserId(j.getId(),u.getId());
                 if(application.isPresent()){
-                    throw new DuplicateException("You've already applied for this job");
+                    throw new DuplicateException("You have already applied for this job.");
                 }
-
                 var fileUpload = new FileUpload(amazonS3);
                 var file = fileUpload.upload(cv);
                 newApplication.setJob(j);

@@ -49,26 +49,5 @@ public class RolesServiceTest {
         verify(rolesRepository).save(any(Roles.class));
     }
 
-    @Test
-    @DisplayName("Testing roll update")
-    public void test_role_update(){
-        var roleUpdateRequest = new RolesUpdateRequest();
-        roleUpdateRequest.setName("admin");
-        when(rolesRepository.save(any(Roles.class))).thenReturn(new Roles());
-        rolesService.updateRole(1L,roleUpdateRequest);
-        verify(rolesRepository).save(any(Roles.class));
-    }
-
-
-
-    @Test
-    @DisplayName("Testing roll deletion")
-    public void test_delete_role(){
-        doNothing().when(rolesRepository).deleteById(1L);
-        rolesService.deleteRole(1L);
-        verify(rolesRepository).deleteById(1L);
-    }
-
-
 
 }

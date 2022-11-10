@@ -17,6 +17,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -47,12 +48,14 @@ public class RolesControllerTest {
 
     @Test
     @DisplayName("Testing get request for all roles")
+    @WithMockUser
     public void test_all_roles() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/roles")).andExpect(status().isOk());
     }
 
     @Test
     @DisplayName("testing get role by id endpoint")
+    @WithMockUser
     public void test_get_role_by_id() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/roles/{id}",1)).andExpect(status().isNotFound());
     }
@@ -60,6 +63,7 @@ public class RolesControllerTest {
 
     @Test
     @DisplayName("testing role creation endpoint")
+    @WithMockUser
     public void test_role_creation() throws Exception{
         var role = new RolesCreationRequest();
         role.setName("tenant");
@@ -71,6 +75,7 @@ public class RolesControllerTest {
 
     @Test
     @DisplayName("testing role update endpoint")
+    @WithMockUser
     public void test_role_update() throws Exception{
         var role = new RolesUpdateRequest();
         role.setName("landlord");
@@ -82,12 +87,14 @@ public class RolesControllerTest {
 
     @Test
     @DisplayName("testing role deletion endpoint")
+    @WithMockUser
     public void test_role_deletion() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.delete("/roles/delete/{id}",1)).andExpect(status().isOk());
     }
 
     @Test
     @DisplayName("testing role assigning to users")
+    @WithMockUser
     public void test_role_add_to_user() throws Exception{
         var roleToAdd = new AddRoleToUserRequest();
         roleToAdd.setUserId(1L);

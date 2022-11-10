@@ -20,6 +20,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -59,18 +60,21 @@ public class UserControllerTest {
 
     @Test
     @DisplayName("Testing get single user by id")
+    @WithMockUser
     public void test_single_user() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/users/{id}",1)).andExpect(status().isOk());
     }
 
     @Test
     @DisplayName("Testing get all user endpoint")
+    @WithMockUser
     public void test_all_user() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.get("/users/")).andExpect(status().isOk());
     }
 
     @Test
     @DisplayName("Testing User creation")
+    @WithMockUser
     public void test_user_creation() throws Exception{
         var user = new UserCreationRequest();
         user.setUsername("testing");
@@ -84,6 +88,7 @@ public class UserControllerTest {
 
     @Test
     @DisplayName("Testing user update endpoint")
+    @WithMockUser
     public void test_user_update() throws Exception{
         var user = new UserUpdateRequest();
         user.setProfession("Software Developer");
@@ -95,6 +100,7 @@ public class UserControllerTest {
 
     @Test
     @DisplayName("testing user deletion endpoint")
+    @WithMockUser
     public void test_user_delete() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders.delete("/users/delete/{id}",1)).andExpect(status().isOk());
     }
