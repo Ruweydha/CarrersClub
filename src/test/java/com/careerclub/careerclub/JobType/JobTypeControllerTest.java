@@ -2,7 +2,7 @@ package com.careerclub.careerclub.JobType;
 
 import com.careerclub.careerclub.Controllers.jobTypeController;
 import com.careerclub.careerclub.DTOs.JobTypeRequest;
-import com.careerclub.careerclub.Entities.JobType;
+import com.careerclub.careerclub.Entities.EmploymentType;
 import com.careerclub.careerclub.Service.CustomUserDetailsService;
 import com.careerclub.careerclub.Service.JobTypeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +47,7 @@ public class JobTypeControllerTest {
         var jobType = new JobTypeRequest();
         jobType.setName("HOME");
         String jtp = objectMapper.writeValueAsString(jobType);
-        when(jobTypeService.createJobType(any(JobTypeRequest.class))).thenReturn(new JobType());
+        when(jobTypeService.createJobType(any(JobTypeRequest.class))).thenReturn(new EmploymentType());
         mockMvc.perform(post("/jobtype")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jtp)).andExpect(status().isOk());

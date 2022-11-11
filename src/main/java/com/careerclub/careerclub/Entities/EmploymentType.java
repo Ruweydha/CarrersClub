@@ -3,8 +3,8 @@ package com.careerclub.careerclub.Entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "JobType")
-public class JobType {
+@Table(name = "EmploymentType")
+public class EmploymentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

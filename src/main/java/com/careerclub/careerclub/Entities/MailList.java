@@ -18,7 +18,7 @@ public class MailList extends RepresentationModel<MailList> {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "jobtype_id")
-    private JobType jobType;
+    private EmploymentType jobType;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "location_id")
@@ -53,11 +53,11 @@ public class MailList extends RepresentationModel<MailList> {
         this.industry = industry;
     }
 
-    public JobType getJobType() {
+    public EmploymentType getJobType() {
         return jobType;
     }
 
-    public void setJobType(JobType jobType) {
+    public void setJobType(EmploymentType jobType) {
         this.jobType = jobType;
     }
 

@@ -1,7 +1,7 @@
 package com.careerclub.careerclub.Controllers;
 
 import com.careerclub.careerclub.DTOs.JobTypeRequest;
-import com.careerclub.careerclub.Entities.JobType;
+import com.careerclub.careerclub.Entities.EmploymentType;
 import com.careerclub.careerclub.Service.JobTypeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ public class jobTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<JobType>> getAllJobTypes(){
+    public ResponseEntity<List<EmploymentType>> getAllJobTypes(){
         var types = jobTypeService.getAllJobs();
         return ResponseEntity.ok(types);
     }
     @PostMapping
-    public ResponseEntity<JobType> postJobType(@RequestBody JobTypeRequest jobTypeRequest){
+    public ResponseEntity<EmploymentType> postJobType(@RequestBody JobTypeRequest jobTypeRequest){
         return ResponseEntity.ok(jobTypeService.createJobType(jobTypeRequest));
     }
 }

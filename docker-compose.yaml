@@ -1,23 +1,28 @@
-version: "1"
+version: "3.7"
 services:
   mysql:
     image: mysql:8.0.31
+    ports:
+      - "8030:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=careerclub
   careerclub:
+    build:
+      context: .
     image: eoluoch/career-club
     depends_on:
       - "mysql"
     ports:
       - "8090:8090"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://carrersclub-mysql-1:3306/careerclub
-      - AWS_ACCESS_KEY_ID=AKIASNPQTJPGLJRHTQAR
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - AWS_ACCESS_KEY_ID=${S3_KEY}
       - AWS_REGION=us-east-2
-      - AWS_SECRET_ACCESS_KEY=99oOvpQYp1vM4w7ib5Dk5s+LticEZBqYfSqoNyLW
-      - SPRING_MAIL_USERNAME=cd5d63c9b70b14
-      - SPRING_MAIL_PASSWORD=d53efc98134f07
+      - AWS_SECRET_ACCESS_KEY=${S3_SECRET}
+      - SPRING_MAIL_USERNAME=${MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
+
 
 
 

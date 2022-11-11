@@ -1,7 +1,5 @@
 package com.careerclub.careerclub.DTOs;
 
-import com.careerclub.careerclub.Entities.JobType;
-
 public class JobUpdatingRequest {
     private String description;
     private String title;
