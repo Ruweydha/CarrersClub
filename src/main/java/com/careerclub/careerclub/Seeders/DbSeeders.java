@@ -88,7 +88,7 @@ public class DbSeeders implements CommandLineRunner {
         if(jobTypeCount == 0){
             var types = new String[]{"fulltime", "remote", "part-time"};
             for(String j:types){
-                var jobType = new JobType();
+                var jobType = new EmploymentType();
                 jobType.setName(j);
                 jobTypeRepository.save(jobType);
             }

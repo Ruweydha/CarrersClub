@@ -2,8 +2,7 @@ package com.careerclub.careerclub.JobType;
 
 
 import com.careerclub.careerclub.DTOs.JobTypeRequest;
-import com.careerclub.careerclub.Entities.JobType;
-import com.careerclub.careerclub.Enums.JobTypeEnums;
+import com.careerclub.careerclub.Entities.EmploymentType;
 import com.careerclub.careerclub.Repositories.JobTypeRepository;
 import com.careerclub.careerclub.Service.JobTypeService;
 import org.junit.jupiter.api.DisplayName;
@@ -38,11 +37,11 @@ public class JobTypeServiceTest {
     @Test
     @DisplayName("testing job type creation")
     public void test_jobType_creation(){
-        when(jobTypeRepository.save(any(JobType.class))).thenReturn(new JobType());
+        when(jobTypeRepository.save(any(EmploymentType.class))).thenReturn(new EmploymentType());
         var jobType = new JobTypeRequest();
         jobType.setName("REMOTE");
         jobTypeService.createJobType(jobType);
-        verify(jobTypeRepository).save(any(JobType.class));
+        verify(jobTypeRepository).save(any(EmploymentType.class));
     }
 
 }

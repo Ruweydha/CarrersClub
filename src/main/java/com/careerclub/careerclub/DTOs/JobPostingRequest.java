@@ -1,10 +1,5 @@
 package com.careerclub.careerclub.DTOs;
 
-import com.careerclub.careerclub.Entities.JobType;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.LocalDateTime;
-
 public class JobPostingRequest {
 
     private String description;

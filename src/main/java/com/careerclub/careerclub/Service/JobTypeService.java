@@ -2,13 +2,11 @@ package com.careerclub.careerclub.Service;
 
 import com.careerclub.careerclub.Advice.RecordNotFoundException;
 import com.careerclub.careerclub.DTOs.JobTypeRequest;
-import com.careerclub.careerclub.Entities.JobType;
-import com.careerclub.careerclub.Enums.JobTypeEnums;
+import com.careerclub.careerclub.Entities.EmploymentType;
 import com.careerclub.careerclub.Repositories.JobTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class JobTypeService {
@@ -19,12 +17,12 @@ public class JobTypeService {
         this.jobTypeRepository = jobTypeRepository;
     }
 
-    public List<JobType> getAllJobs(){
+    public List<EmploymentType> getAllJobs(){
         var jobTypes = jobTypeRepository.findAll();
         return jobTypes;
     }
-    public JobType createJobType(JobTypeRequest jobTypeRequest){
-        JobType jobType = new JobType();
+    public EmploymentType createJobType(JobTypeRequest jobTypeRequest){
+        EmploymentType jobType = new EmploymentType();
         checkingEnums(jobTypeRequest.getName());
         do{
             jobType.setName(jobTypeRequest.getName());
