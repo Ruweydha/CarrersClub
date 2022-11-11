@@ -5,8 +5,10 @@ import com.careerclub.careerclub.Education.dto.EducationCreateRequest;
 import com.careerclub.careerclub.Education.entity.Education;
 import com.careerclub.careerclub.Education.repository.EducationRepository;
 import com.careerclub.careerclub.Repositories.UserRepository;
+import com.careerclub.careerclub.Utils.Dateformat;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -25,15 +27,17 @@ public class EducationService {
         return educationRepository.findAllByUserId(userId);
     }
 
-    public Education addEducation(EducationCreateRequest educationCreateRequest){
+    public Education addEducation(EducationCreateRequest educationCreateRequest) throws ParseException{
         var user = userRepository.findById(educationCreateRequest.getUserId());
+        var startOfEducation = Dateformat.formatDate(educationCreateRequest.getStartOfEducation());
+        var endOfEducation = Dateformat.formatDate(educationCreateRequest.getEndOfEducation());
         var education = new Education();
         education.setSchoolName(educationCreateRequest.getSchoolName());
         education.setDegreeName(educationCreateRequest.getDegreeName());
         education.setEducationLevel(educationCreateRequest.getEducationLevel());
         education.setGrade(educationCreateRequest.getGrade());
-        education.setStartOfEducation(educationCreateRequest.getStartOfEducation());
-        education.setEndOfEducation(educationCreateRequest.getEndOfEducation());
+        education.setStartOfEducation(startOfEducation);
+        education.setEndOfEducation(endOfEducation);
 
         user.ifPresentOrElse(u->{
             education.setUser(u);
@@ -45,15 +49,17 @@ public class EducationService {
         return education;
     }
 
-    public Optional<Education> updateEducation(Long educationId, EducationCreateRequest educationCreateRequest){
+    public Optional<Education> updateEducation(Long educationId, EducationCreateRequest educationCreateRequest) throws ParseException{
         var education = educationRepository.findById(educationId);
+        var startOfEducation = Dateformat.formatDate(educationCreateRequest.getStartOfEducation());
+        var endOfEducation = Dateformat.formatDate(educationCreateRequest.getEndOfEducation());
         education.ifPresentOrElse(e->{
             e.setSchoolName(educationCreateRequest.getSchoolName());
             e.setDegreeName(educationCreateRequest.getDegreeName());
             e.setEducationLevel(educationCreateRequest.getEducationLevel());
             e.setGrade(educationCreateRequest.getGrade());
-            e.setStartOfEducation(educationCreateRequest.getStartOfEducation());
-            e.setEndOfEducation(educationCreateRequest.getEndOfEducation());
+            e.setStartOfEducation(startOfEducation);
+            e.setEndOfEducation(endOfEducation);
             educationRepository.save(e);
         },()->{
             throw new RecordNotFoundException("Education with the given id doesn't exist.");
