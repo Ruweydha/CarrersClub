@@ -1,8 +1,10 @@
 package com.careerclub.careerclub.Education.entity;
 
 import com.careerclub.careerclub.Entities.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Education {
@@ -21,10 +23,11 @@ public class Education {
     private String educationLevel;
 
     private String grade;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date startOfEducation;
 
-    private String startOfEducation;
-
-    private String endOfEducation;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date endOfEducation;
 
     public User getUser() {
         return user;
@@ -74,19 +77,19 @@ public class Education {
         this.grade = grade;
     }
 
-    public String getStartOfEducation() {
+    public Date getStartOfEducation() {
         return startOfEducation;
     }
 
-    public void setStartOfEducation(String startOfEducation) {
+    public void setStartOfEducation(Date startOfEducation) {
         this.startOfEducation = startOfEducation;
     }
 
-    public String getEndOfEducation() {
+    public Date getEndOfEducation() {
         return endOfEducation;
     }
 
-    public void setEndOfEducation(String endOfEducation) {
+    public void setEndOfEducation(Date endOfEducation) {
         this.endOfEducation = endOfEducation;
     }
 }
