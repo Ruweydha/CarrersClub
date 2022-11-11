@@ -51,6 +51,7 @@ public class ApplicationService {
         Application newApplication = new Application();
         var user = userRepository.findById(userId);
         var job = jobRepository.findById(jobId);
+
         user.ifPresentOrElse(u -> {
             job.ifPresentOrElse(j -> {
                 var application = applicationRepository.findByJobIdAndUserId(j.getId(),u.getId());

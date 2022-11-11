@@ -68,7 +68,7 @@ public class AuthController {
             rolesClaim.put("roles", roles);
 
 
-            var accessToken = generateAccessToken(jwtSecret,jwt.getBody().getSubject(), rolesClaim, java.util.Date.from(Instant.now().plusSeconds(360)));
+            var accessToken = generateAccessToken(jwtSecret,jwt.getBody().getSubject(), rolesClaim, java.util.Date.from(Instant.now().plusSeconds(3600)));
             String refreshToken = generateAccessToken(jwtRefreshSecret, jwt.getBody().getSubject(), rolesClaim, java.util.Date.from(Instant.now().plusSeconds(86_400)));
             return ResponseEntity.ok(Map.of("accessToken", accessToken, "refreshToken", refreshToken));
         } catch (Exception e) {
