@@ -9,6 +9,7 @@ import com.careerclub.careerclub.WorkExperience.repository.WorkExperienceReposit
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.Optional;
 
 @Service
 public class WorkExperienceService {
@@ -38,14 +39,16 @@ public class WorkExperienceService {
         return workExperience;
     }
 
-    public WorkExperience updateWorkExperience(Long id, WorkExperienceRequest workExperienceRequest){
+    public Optional<WorkExperience> updateWorkExperience(Long id, WorkExperienceRequest workExperienceRequest){
         var workExperience = workExperienceRepository.findById(id);
         workExperience.ifPresentOrElse(w ->{
             w.setUrlOfEmployer(workExperienceRequest.getUrlOfEmployer());
             w.setEmployer(workExperienceRequest.getEmployer());
             w.setJobTitle(workExperienceRequest.getJobTitle());
+            workExperienceRepository.save(w);
         }, ()->{
             throw new RecordNotFoundException("Work experience doesn't exist");
         });
+        return workExperience;
     }
 }
