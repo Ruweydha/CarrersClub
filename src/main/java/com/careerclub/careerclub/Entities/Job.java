@@ -29,7 +29,7 @@ public class Job extends AbstractAggregateRoot<Job> {
     private Company company;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "jobTypeId")
+    @JoinColumn(name = "EmploymentTypeId")
     private EmploymentType jobType;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "industryId")
