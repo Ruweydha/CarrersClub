@@ -1,6 +1,8 @@
 package com.careerclub.careerclub.Auth;
 
+import com.amazonaws.services.cognitoidp.model.ForgotPasswordRequest;
 import com.careerclub.careerclub.Advice.RecordNotFoundException;
+import com.careerclub.careerclub.DTOs.CodeVerificationRequest;
 import com.careerclub.careerclub.Entities.Roles;
 import com.careerclub.careerclub.Repositories.CodeRepository;
 import com.careerclub.careerclub.Repositories.UserRepository;
@@ -74,6 +76,11 @@ public class AuthController {
         } catch (Exception e) {
             return ResponseEntity.status(401).body("Invalid refresh token");
         }
+    }
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(ForgotPassword forgotPassword, CodeVerificationRequest codeVerificationRequest){
+        authService.forgotPasswordMethod(forgotPassword, codeVerificationRequest);
+        return ResponseEntity.ok("Successfully reset password");
     }
 
 
