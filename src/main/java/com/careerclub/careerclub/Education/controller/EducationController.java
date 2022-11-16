@@ -6,6 +6,7 @@ import com.careerclub.careerclub.Education.service.EducationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,13 +26,13 @@ public class EducationController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Education> addEducation(@RequestBody EducationCreateRequest educationCreateRequest){
+    public ResponseEntity<Education> addEducation(@RequestBody EducationCreateRequest educationCreateRequest) throws ParseException {
         var education = educationService.addEducation(educationCreateRequest);
         return ResponseEntity.status(201).body(education);
     }
 
     @PutMapping("/update/{educationId}")
-    public ResponseEntity<Education> updateEducation(@PathVariable Long educationId,@RequestBody EducationCreateRequest educationCreateRequest){
+    public ResponseEntity<Education> updateEducation(@PathVariable Long educationId,@RequestBody EducationCreateRequest educationCreateRequest) throws ParseException {
         var education = educationService.updateEducation(educationId,educationCreateRequest);
         return ResponseEntity.of(education);
     }
